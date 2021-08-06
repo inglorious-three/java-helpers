@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import static com.github.ingloriuosthree.javahelpers.Functions.filterAll;
 import static com.github.ingloriuosthree.javahelpers.Functions.mapAll;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.list;
@@ -39,20 +40,29 @@ public final class FunctionsTest {
    }
 
    @Test
-   void testMapAll() {
+   void givenListShouldFilterEachEntry() {
+      //      given
+      TestWrapper<Collection<Integer>> given = TestWrapper.of(list(1, 2, 3, 4));
+
+      //      when
+      TestWrapper<List<Integer>> actual = given.map(filterAll(integer -> integer % 2 != 0));
+
+      //      then
+      assertThat(actual.getRaw()).containsExactly(1,3);
    }
 
    @Test
-   void mapAllToSet() {
+   void givenListShouldFilterEachEntryToSet() {
+      //      given
+      TestWrapper<Collection<Integer>> given = TestWrapper.of(list(1, 2, 2, 3, 4));
+
+      //      when
+      TestWrapper<Set<Integer>> actual = given.map(filterAll(integer -> integer % 2 == 0, Collectors.toSet(), false));
+
+      //      then
+      assertThat(actual.getRaw()).containsExactlyInAnyOrder(2,4);
    }
 
-   @Test
-   void filterAll() {
-   }
-
-   @Test
-   void testFilterAll() {
-   }
 
    static class TestWrapper<T> {
 
