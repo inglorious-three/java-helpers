@@ -12,7 +12,7 @@ import static com.github.ingloriuosthree.javahelpers.Functions.mapAll;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.list;
 
-class FunctionsTest {
+public final class FunctionsTest {
 
    @Test
    void givenListshouldMapEachEntry() {
