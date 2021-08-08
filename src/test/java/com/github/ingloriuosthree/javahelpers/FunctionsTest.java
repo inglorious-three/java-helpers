@@ -10,7 +10,9 @@ import java.util.stream.Collectors;
 
 import static com.github.ingloriuosthree.javahelpers.Functions.filterAll;
 import static com.github.ingloriuosthree.javahelpers.Functions.mapAll;
+import static com.github.ingloriuosthree.javahelpers.Functions.mapAllToSet;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatNullPointerException;
 import static org.assertj.core.util.Lists.list;
 
 public final class FunctionsTest {
@@ -25,6 +27,51 @@ public final class FunctionsTest {
 
       //      then
       assertThat(actual.getRaw()).containsExactly(2,3,4,5);
+   }
+
+   @Test
+   void givenNullShouldThrowNullPointerException1() {
+      //      given
+      TestWrapper<Collection<Integer>> given = TestWrapper.of(list(1, 2, 3, 4));
+
+      //      when/then
+      assertThatNullPointerException().isThrownBy(() -> given.map(mapAll(null)));
+   }
+
+   @Test
+   void givenNullShouldThrowNullPointerException2() {
+      //      given
+      TestWrapper<Collection<Integer>> given = TestWrapper.of(list(1, 2, 3, 4));
+
+      //      when/then
+      assertThatNullPointerException().isThrownBy(() -> given.map(mapAll(integer -> integer, null, false)));
+   }
+
+   @Test
+   void givenNullShouldThrowNullPointerException3() {
+      //      given
+      TestWrapper<Collection<Integer>> given = TestWrapper.of(list(1, 2, 3, 4));
+
+      //      when/then
+      assertThatNullPointerException().isThrownBy(() -> given.map(mapAllToSet(null)));
+   }
+
+   @Test
+   void givenNullShouldThrowNullPointerException4() {
+      //      given
+      TestWrapper<Collection<Integer>> given = TestWrapper.of(list(1, 2, 3, 4));
+
+      //      when/then
+      assertThatNullPointerException().isThrownBy(() -> given.map(filterAll(null)));
+   }
+
+   @Test
+   void givenNullShouldThrowNullPointerException5() {
+      //      given
+      TestWrapper<Collection<Integer>> given = TestWrapper.of(list(1, 2, 3, 4));
+
+      //      when/then
+      assertThatNullPointerException().isThrownBy(() -> given.map(filterAll(integer -> true, null, true)));
    }
 
    @Test
