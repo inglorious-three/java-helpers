@@ -26,7 +26,7 @@ public final class FunctionsTest {
       TestWrapper<List<Integer>> actual = given.map(mapAll(integer -> integer + 1));
 
       //      then
-      assertThat(actual.getRaw()).containsExactly(2,3,4,5);
+      assertThat(actual.getRaw()).containsExactly(2, 3, 4, 5);
    }
 
    @Test
@@ -83,7 +83,7 @@ public final class FunctionsTest {
       TestWrapper<Set<Integer>> actual = given.map(mapAll(integer -> integer - 2, Collectors.toSet(), false));
 
       //      then
-      assertThat(actual.getRaw()).containsExactlyInAnyOrder(-1,0,1,2);
+      assertThat(actual.getRaw()).containsExactlyInAnyOrder(-1, 0, 1, 2);
    }
 
    @Test
@@ -95,7 +95,7 @@ public final class FunctionsTest {
       TestWrapper<List<Integer>> actual = given.map(filterAll(integer -> integer % 2 != 0));
 
       //      then
-      assertThat(actual.getRaw()).containsExactly(1,3);
+      assertThat(actual.getRaw()).containsExactly(1, 3);
    }
 
    @Test
@@ -107,7 +107,7 @@ public final class FunctionsTest {
       TestWrapper<Set<Integer>> actual = given.map(filterAll(integer -> integer % 2 == 0, Collectors.toSet(), false));
 
       //      then
-      assertThat(actual.getRaw()).containsExactlyInAnyOrder(2,4);
+      assertThat(actual.getRaw()).containsExactlyInAnyOrder(2, 4);
    }
 
 

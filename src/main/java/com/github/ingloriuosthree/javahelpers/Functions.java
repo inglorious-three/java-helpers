@@ -21,22 +21,22 @@ public final class Functions {
       return parallel ? t -> t.stream().parallel().map(map).collect(collector) : t -> t.stream().map(map).collect(collector);
    }
 
-   public static  <T, R> Function<Collection<T>, List<R>> mapAll(Function<T, R> map) {
+   public static <T, R> Function<Collection<T>, List<R>> mapAll(Function<T, R> map) {
       requireNonNull(map);
       return mapAll(map, Collectors.toList(), false);
    }
 
-   public static  <T, R> Function<Collection<T>, Set<R>> mapAllToSet(Function<T, R> map) {
+   public static <T, R> Function<Collection<T>, Set<R>> mapAllToSet(Function<T, R> map) {
       requireNonNull(map);
       return mapAll(map, Collectors.toSet(), false);
    }
 
-   public static  <T, R> Function<Collection<T>, R> filterAll(Predicate<T> filter, Collector<T, ?, R> collector, boolean parallel) {
+   public static <T, R> Function<Collection<T>, R> filterAll(Predicate<T> filter, Collector<T, ?, R> collector, boolean parallel) {
       allRequireNonNull(filter, collector, parallel);
       return parallel ? t -> t.stream().parallel().filter(filter).collect(collector) : t -> t.stream().filter(filter).collect(collector);
    }
 
-   public static  <T> Function<Collection<T>, List<T>> filterAll(Predicate<T> filter) {
+   public static <T> Function<Collection<T>, List<T>> filterAll(Predicate<T> filter) {
       requireNonNull(filter);
       return filterAll(filter, Collectors.toList(), false);
    }
