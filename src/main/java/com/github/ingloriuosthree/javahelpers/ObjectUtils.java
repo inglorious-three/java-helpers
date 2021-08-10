@@ -16,6 +16,18 @@ public final class ObjectUtils {
    }
 
    /**
+    * Checks whether or not any given param is null.
+    *
+    * @param objects objects that you want to check
+    * @return true, if any given param is null, false if all params are non null
+    */
+   public static boolean anyNull(Object... objects) {
+      return Arrays.stream(objects)
+            .anyMatch(Objects::isNull);
+   }
+
+
+   /**
     * Throws NullPointerException if any given param is null
     *
     * @param objects objects that has to be non null
